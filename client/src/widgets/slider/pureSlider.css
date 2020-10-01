@@ -1,0 +1,256 @@
+:root {
+    --slider-width: 400px; /* 400px */
+    --slider-height: 340px; /* 300px */
+    --slide-margin-side: 4px;
+}
+
+.slider {
+    position: relative;
+    width: 100%;
+    height: calc(var(--slider-height) * 1.25);
+    margin: auto;
+    filter: drop-shadow(2px 2px 4px black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #263238;
+    border-radius: 4px;
+}
+
+.screen {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 4px;
+    user-select: none;
+    /* for correct work of mouseup event */
+}
+
+.slides {
+    display: flex;
+    position: relative;
+    /* idk why but with relative motion looks smoother */
+    top: 0;
+    left: calc((var(--slider-width) + 2 * var(--slide-margin-side)) * -1);
+    width: 100%;
+    user-select: none;
+}
+
+.slides.gal {
+    justify-content: center;    
+}
+
+.slides.shifting {
+    transition: left .2s ease-out;
+}
+
+.slide {
+    min-width: var(--slider-width);
+    width: var(--slider-width);
+    height: var(--slider-height);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    position: relative;    
+    text-align: center;
+    margin-left: var(--slide-margin-side);
+    margin-right: var(--slide-margin-side);
+    border-radius: 4px;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: all 500ms;
+    /*transform: scale(.9);*/
+    transition: transform 150ms ease-in;
+}
+
+.current {
+    position: relative;
+    color: cyan;    
+    /*transform: scale(1.1);*/
+    transition: transform 150ms ease-in;
+}
+
+.gallery {
+    position: relative;
+    color: cyan;    
+}
+
+.slide div {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+}
+
+.slide.current div {
+    opacity: 1;
+}
+
+.slider.gallery div {
+    opacity: 1;
+}
+
+.slide div span:not(:first-child) {
+    display: inline-block;
+    left: 0;    
+    transform: translateX(-200%);
+    /* transition: transform 300ms ease-in; */
+}
+
+.slide.current div span:not(:first-child) {
+    display: inline-block;
+    left: 0;    
+    transform: translateX(0%);
+    transition: transform 350ms 300ms ease-in;
+}
+
+.slide.gallery div span:not(:first-child) {
+    display: inline-block;
+    left: 0;    
+    transform: translateX(0%);
+    transition: transform 350ms 300ms ease-in;
+}
+
+.active {
+    cursor: grabbing;
+}
+
+.nonactive {
+    cursor: pointer;
+}
+
+/* .slider.loaded .slide:nth-child(2), .slider.loaded .slide:nth-child(7) {
+    background: #FFCF47
+}
+
+.slider.loaded .slide:nth-child(1), .slider.loaded .slide:nth-child(6) {
+    background: #7ADCEF
+}
+
+.slider.loaded .slide:nth-child(3) {
+    background: #3CFF96
+}
+
+.slider.loaded .slide:nth-child(4) {
+    background: #a78df5
+}
+
+.slider.loaded .slide:nth-child(5) {
+    background: #ff8686
+} */
+
+.control {
+    position: absolute;
+    top: 50%;
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50px;
+    margin-top: -20px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    z-index: 2;
+}
+
+.prev, .next {
+    background-size: 22px;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+.prev {
+    background-image: url(https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ChevronLeft-512.png);
+    left: -20px;
+}
+
+.next {
+    background-image: url(https://cdn0.iconfinder.com/data/icons/navigation-set-arrows-part-one/32/ChevronRight-512.png);
+    right: -20px;
+}
+
+.prev:active, .next:active {
+    transform: scale(.8);
+}
+
+.clone {
+    content: "";
+}
+
+@media (max-width: 812px) and (max-height: 375px) {
+    :root {
+        --slider-width: 340px;
+        --slider-height: 240px;
+    }
+}
+
+@media (max-width: 736px) and (max-height: 414px) {
+    :root {
+        --slider-width: 360px;
+        --slider-height: 260px;
+    }
+}
+
+@media (max-width: 667px) and (max-height: 375px) {
+    :root {
+        --slider-width: 340px;
+        --slider-height: 240px;
+    }
+}
+
+@media (max-width: 640px) and (max-height: 360px) {
+    :root {
+        --slider-width: 340px;
+        --slider-height: 240px;
+    }
+}
+
+@media (max-width: 640px) and (max-height: 320px) {
+    :root {
+        --slider-width: 340px;
+        --slider-height: 220px;
+    }
+}
+
+@media (max-width: 414px) {
+    :root {
+        --slider-width: 330px;
+        --slider-height: 230px;
+    }
+}
+
+@media (max-width: 375px) {
+    :root {
+        --slider-width: 330px;
+        --slider-height: 230px;
+    }
+}
+
+@media(max-width: 360px) {
+    :root {
+        --slider-width: 316px;
+        --slider-height: 230px;
+    }
+}
+
+@media(max-width: 320px) {
+    :root {
+        --slider-width: 280px;
+        --slider-height: 210px;
+    }
+}
+
+@media(max-width: 280px) {
+    :root {
+        --slider-width: 240px;
+        --slider-height: 210px;
+    }
+}
+
+@media(min-width: 1360px) {
+    :root {        
+        --slider-height: 320px;
+    }
+}
