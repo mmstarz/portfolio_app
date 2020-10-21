@@ -2,4 +2,4 @@
 
 simple dev company portfolio app
 
-### https://mmfactory.herokuapp.com/
+### https://mmfactory-portfolio.herokuapp.com/
